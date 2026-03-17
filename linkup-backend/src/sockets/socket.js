@@ -35,6 +35,18 @@ module.exports = (io) => {
       console.log('User disconnected:', socket.id, 'reason:', reason);
     });
 
+    // Proximity Alert - when a user comes nearby
+    socket.on('proximityAlert', (data) => {
+      const { userId, nearbyUserId, userName } = data;
+      // Send alert to the nearby user
+      io.to(nearbyUserId).emit('proximityAlert', {
+        userId,
+        name: userName,
+        message: `${userName} is nearby`
+      });
+      console.log(`Proximity alert sent: ${userName} is near user ${nearbyUserId}`);
+    });
+
     // Join user room
     socket.on('joinUser', (userId) => {
       if (!userId || userId === 'undefined' || userId === 'null') {

@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 import { Toaster } from 'react-hot-toast';
+import 'leaflet/dist/leaflet.css';
 
 // Layout
 import MainLayout from './layouts/MainLayout';
