@@ -1,0 +1,323 @@
+{
+  "info": {
+    "name": "Linkup API Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Collection for testing Linkup backend APIs"
+  },
+  "variable": [
+    {
+      "key": "baseURL",
+      "value": "http://localhost:5000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\",\n  \"latitude\": 40.7128,\n  \"longitude\": -74.0060\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/auth/register",
+              "host": ["{{baseURL}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/auth/login",
+              "host": ["{{baseURL}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/api/auth/me",
+              "host": ["{{baseURL}}"],
+              "path": ["api", "auth", "me"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Profile",
+      "item": [
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bio\": \"Software Developer\",\n  \"skills\": [\"JavaScript\", \"Node.js\"],\n  \"interests\": [\"AI\", \"Web Development\"],\n  \"projects\": [\"Linkup App\"],\n  \"experience\": [\"2 years at Tech Corp\"],\n  \"github\": \"https://github.com/johndoe\",\n  \"linkedin\": \"https://linkedin.com/in/johndoe\"\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/profile/update",
+              "host": ["{{baseURL}}"],
+              "path": ["api", "profile", "update"]
+            }
+          }
+        },
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/api/profile/:id",
+              "host": ["{{baseURL}}"],
+              "path": ["api", "profile", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "60d5ecb74b24c72b8c8b4568"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Location",
+      "item": [
+        {
+          "name": "Update Location",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"latitude\": 40.7128,\n  \"longitude\": -74.0060\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/location/update",
+              "host": ["{{baseURL}}"],
+              "path": ["api", "location", "update"]
+            }
+          }
+        },
+        {
+          "name": "Get Nearby Users",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/api/users/nearby",
+              "host": ["{{baseURL}}"],
+              "path": ["api", "users", "nearby"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Teams",
+      "item": [
+        {
+          "name": "Create Team",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teamName\": \"Hackathon Heroes\",\n  \"requiredSkills\": [\"React\", \"Node.js\"],\n  \"teamSize\": 4\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/teams/create",
+              "host": ["{{baseURL}}"],
+              "path": ["api", "teams", "create"]
+            }
+          }
+        },
+        {
+          "name": "Get Teams",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/api/teams",
+              "host": ["{{baseURL}}"],
+              "path": ["api", "teams"]
+            }
+          }
+        },
+        {
+          "name": "Join Team",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teamId\": \"60d5ecb74b24c72b8c8b4569\"\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/teams/join",
+              "host": ["{{baseURL}}"],
+              "path": ["api", "teams", "join"]
+            }
+          }
+        },
+        {
+          "name": "Approve Join Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teamId\": \"60d5ecb74b24c72b8c8b4569\",\n  \"userId\": \"60d5ecb74b24c72b8c8b4568\"\n}"
+            },
+            "url": {
+              "raw": "{{baseURL}}/api/teams/approve",
+              "host": ["{{baseURL}}"],
+              "path": ["api", "teams", "approve"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Chat",
+      "item": [
+        {
+          "name": "Get Private Chat",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/api/chat/:userId",
+              "host": ["{{baseURL}}"],
+              "path": ["api", "chat", ":userId"],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "60d5ecb74b24c72b8c8b4568"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Team Chat",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseURL}}/api/chat/team/:teamId",
+              "host": ["{{baseURL}}"],
+              "path": ["api", "chat", "team", ":teamId"],
+              "variable": [
+                {
+                  "key": "teamId",
+                  "value": "60d5ecb74b24c72b8c8b4569"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
